@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "text": "We always try to facilitate that innovation of our customers, to be up to date, to be able to offer our customers what they need according to what the market demands. But we have always found a very, very proactive collaborator in Holded.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "0:57",
+    "theme": "Innovation",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 2,
+    "text": "FIN2GO is an ecosystem that was born many years ago to provide financial services to companies. Today we help companies manage their treasury, we help them with their financing, we help them also with the foreign risk part.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "0:17",
+    "theme": "Company Overview",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 3,
+    "text": "The integration with Holded, I think it started with you, I think you approached us with a very interesting proposal, we valued it positively and we have been collaborating with Holded for a long time.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "0:44",
+    "theme": "Partnership",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 4,
+    "text": "In terms of the treasury product that you offer, the truth is that we are very satisfied; it is a very round product.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "1:16",
+    "theme": "Product Satisfaction",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 5,
+    "text": "The main value proposition is that companies can connect their banks in less than 5 minutes to be able to see their real treasury position.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "1:23",
+    "theme": "Value Proposition",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 6,
+    "text": "They can make forecasts, they can make reconciliations, and we also offer them supplementary services such as financing and foreign exchange, always with that centralized treasury view.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "1:33",
+    "theme": "Features",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 7,
+    "text": "Our customer is a small, medium-sized company, that has one characteristic in common: they have a treasury problem. They either have an excess of treasury or they have a deficit.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "1:52",
+    "theme": "Target Customer",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 8,
+    "text": "We help SMEs manage their treasury in an increasingly digital, transparent and efficient way. We are their partners and we see customers as partners.",
+    "speaker": "José Vega",
+    "role": "Co-CEO & Co-founder, FIN2GO",
+    "source": "FIN2GO Interview",
+    "page": "2:13",
+    "theme": "Mission",
+    "sourceKey": "fin2go"
+  },
+  {
+    "id": 9,
+    "text": "La contabilidad colaborativa ha pasado de ser un ideal a ser una realidad práctica. No solo es posible llevarla a cabo, sino que ya está transformando la forma en que trabajan contables, asesores y sus clientes.",
+    "speaker": "Javier Jiménez",
+    "role": "Presidente de AECE",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 3",
+    "theme": "Collaborative Accounting",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 10,
+    "text": "Por suerte, la transformación digital ha abierto una nueva vía de cooperación natural: la contabilidad colaborativa, un modelo en el que empresa y asesoría trabajan de forma conjunta y simultánea sobre los mismos datos contables.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 6",
+    "theme": "Digital Transformation",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 11,
+    "text": "Implicando a mi equipo y a los clientes en el uso de Holded, hemos reducido la carga de trabajo en un 30 %.",
+    "speaker": "María Martínez",
+    "role": "Asesora fiscal y contable",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 12",
+    "theme": "Efficiency",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 12,
+    "text": "La contabilidad colaborativa significa compartir una fuente de datos única con el cliente, lo que reduce duplicidades y errores mientras mejora la comunicación.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 8",
+    "theme": "Data Management",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 13,
+    "text": "El acceso en tiempo real a la información financiera permite a ambas partes tomar decisiones más ágiles y fundamentadas.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 10",
+    "theme": "Real-time Access",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 14,
+    "text": "Gracias a la automatización, tareas como la conciliación bancaria o la generación de informes se realizan en minutos, liberando tiempo para el asesoramiento estratégico.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 14",
+    "theme": "Automation",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 15,
+    "text": "La contabilidad colaborativa no solo mejora la eficiencia, sino que también fortalece la relación entre asesor y cliente, creando una alianza basada en la transparencia.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 16",
+    "theme": "Client Relations",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 16,
+    "text": "Para las asesorías, adoptar este modelo es una ventaja competitiva que les permite diferenciarse en un mercado cada vez más digitalizado.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "eBook Contabilidad Colaborativa",
+    "page": "p. 18",
+    "theme": "Competitive Advantage",
+    "sourceKey": "collab"
+  },
+  {
+    "id": 17,
+    "text": "Verifactu representa un paso adelante en la digitalización del cumplimiento fiscal en España, y Holded está preparado para ayudar a las empresas a adaptarse.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "Verifactu con Holded",
+    "page": "p. 4",
+    "theme": "Digitalización fiscal",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 18,
+    "text": "La normativa Verifactu busca garantizar la integridad y trazabilidad de las facturas emitidas por los sistemas informáticos de facturación.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "Verifactu con Holded",
+    "page": "p. 5",
+    "theme": "Normativa",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 19,
+    "text": "Con Holded, el proceso de adaptación a Verifactu es sencillo: el sistema genera automáticamente los registros requeridos y facilita su envío a la AEAT.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "Verifactu con Holded",
+    "page": "p. 8",
+    "theme": "Automatización",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 20,
+    "text": "Las empresas que adopten Verifactu de forma temprana tendrán una ventaja competitiva al demostrar transparencia y cumplimiento desde el primer día.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "Verifactu con Holded",
+    "page": "p. 12",
+    "theme": "Ventaja competitiva",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 21,
+    "text": "La integración de Verifactu en Holded no requiere conocimientos técnicos avanzados; está diseñada para que cualquier usuario pueda configurarla fácilmente.",
+    "speaker": "Equipo Editorial",
+    "role": "Holded",
+    "source": "Verifactu con Holded",
+    "page": "p. 14",
+    "theme": "Usabilidad",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 22,
+    "text": "Tener acceso real a la información de facturación es clave para mejorar el cumplimiento fiscal y dar un mejor servicio a empresas y autónomos.",
+    "speaker": "Javier Hurtado",
+    "role": "Representante de la AEAT",
+    "source": "Verifactu con Holded",
+    "page": "p. 2-3",
+    "theme": "Cumplimiento fiscal",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 23,
+    "text": "Si el software y las asesorías están asociados, todos sus clientes podrán estar tranquilos, ya que se habrá solucionado su problema.",
+    "speaker": "Javier Hurtado",
+    "role": "Representante de la AEAT",
+    "source": "Verifactu con Holded",
+    "page": "p. 18-19",
+    "theme": "Partnerships",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 24,
+    "text": "El consejo es claro: cuanto antes, mejor. No lo dejes para el último momento. Sabemos que habrá dificultades, pero cuanto antes empieces a probar y adaptarte, más fácil será superarlas.",
+    "speaker": "Javier Hurtado",
+    "role": "Representante de la AEAT",
+    "source": "Verifactu con Holded",
+    "page": "p. 19",
+    "theme": "Preparación",
+    "sourceKey": "verifactu"
+  },
+  {
+    "id": 25,
+    "text": "Verifactu es una oportunidad para colaborar más con nuestros clientes y, gracias a la facilidad de Holded en esta fase voluntaria, las asesorías podrán llegar preparadas al 1 de enero.",
+    "speaker": "Florencia D'Andrea",
+    "role": "Directora del área fiscal y contable en Lidera tu negocio",
+    "source": "Verifactu con Holded",
+    "page": "p. 10-11",
+    "theme": "Oportunidad",
+    "sourceKey": "verifactu"
+  }
+]
