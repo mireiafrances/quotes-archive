@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Archive — Holded</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coral: #FF6B5B;
+      --coral-light: #FFF0EE;
+      --coral-dark: #E04D3D;
+      --navy: #1A1F36;
+      --navy-light: #2D3348;
+      --slate: #64748B;
+      --silver: #F1F5F9;
+      --white: #FFFFFF;
+      --shadow-sm: 0 1px 2px rgba(26,31,54,0.05);
+      --shadow-md: 0 4px 12px rgba(26,31,54,0.08);
+      --shadow-lg: 0 12px 40px rgba(26,31,54,0.12);
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: linear-gradient(145deg, #FAFBFC 0%, #F1F5F9 100%);
+      min-height: 100vh;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.03;
+      z-index: 1000;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 0 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--coral);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(255,107,91,0.3);
+    }
+
+    .logo-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: white;
+      fill: none;
+    }
+
+    .logo-text h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+
+    .logo-text span {
+      font-size: 0.875rem;
+      color: var(--slate);
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--coral);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255,107,91,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--coral-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255,107,91,0.35);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--navy);
+      border: 1px solid #E2E8F0;
+    }
+
+    .btn-secondary:hover {
+      background: var(--silver);
+      border-color: #CBD5E1;
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .value {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .stat-card .value span {
+      font-size: 1rem;
+      color: var(--slate);
+      font-weight: 400;
+    }
+
+    .search-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search-input-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      stroke: var(--slate);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--coral);
+      box-shadow: 0 0 0 3px rgba(255,107,91,0.1);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #E2E8F0;
+      background: white;
+      color: var(--slate);
+      font-family: inherit;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--coral);
+      color: var(--coral);
+    }
+
+    .filter-tab.active {
+      background: var(--coral-light);
+      border-color: var(--coral);
+      color: var(--coral-dark);
+    }
+
+    .quotes-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .quote-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      font-family: 'Fraunces', serif;
+      font-size: 8rem;
+      color: var(--coral);
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .quote-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quote-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .quote-author {
+      flex: 1;
+    }
+
+    .quote-author .name {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.95rem;
+    }
+
+    .quote-author .role {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    .quote-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #F1F5F9;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .tag-source {
+      background: #EEF2FF;
+      color: #4F46E5;
+    }
+
+    .tag-page {
+      background: #F0FDF4;
+      color: #16A34A;
+    }
+
+    .tag-theme {
+      background: var(--coral-light);
+      color: var(--coral-dark);
+    }
+
+    .quote-actions {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .quote-card:hover .quote-actions {
+      opacity: 1;
+    }
+
+    .action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: var(--silver);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--coral-light);
+    }
+
+    .action-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--slate);
+    }
+
+    .action-btn:hover svg {
+      stroke: var(--coral);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--slate);
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      stroke: #CBD5E1;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26,31,54,0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: none;
+      background: var(--silver);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: #E2E8F0;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--coral);
+      box-shadow: 0 0 0 3px rgba(255,107,91,0.1);
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #F1F5F9;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .upload-zone {
+      border: 2px dashed #E2E8F0;
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 1rem;
+    }
+
+    .upload-zone:hover {
+      border-color: var(--coral);
+      background: var(--coral-light);
+    }
+
+    .upload-zone svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--slate);
+      margin-bottom: 1rem;
+    }
+
+    .upload-zone:hover svg {
+      stroke: var(--coral);
+    }
+
+    .upload-zone h4 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .upload-zone p {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--navy);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 200;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 20px;
+      height: 20px;
+      stroke: #4ADE80;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      color: var(--slate);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--coral);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1rem;
+      }
+
+      header {
+        padding: 1rem 0 2rem;
+      }
+
+      .logo-text h1 {
+        font-size: 1.4rem;
+      }
+
+      .quote-text {
+        font-size: 1.05rem;
+      }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .header-actions {
+        width: 100%;
+      }
+
+      .header-actions .btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21"/>
+            <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>Quote Archive</h1>
+          <span>Capture wisdom from any source</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="openModal('upload')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload
+        </button>
+        <button class="btn btn-primary" onclick="openModal('add')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add quote
+        </button>
+      </div>
+    </header>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="label">Total quotes</div>
+        <div class="value" id="stat-total">25</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Sources</div>
+        <div class="value" id="stat-sources">3</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Speakers</div>
+        <div class="value" id="stat-speakers">8</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Themes</div>
+        <div class="value" id="stat-themes">17</div>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" class="search-input" id="search-input" placeholder="Search quotes by text, speaker, or theme..." oninput="filterQuotes()">
+        </div>
+      </div>
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="setFilter('all')">All quotes</button>
+        <button class="filter-tab" data-filter="fin2go" onclick="setFilter('fin2go')">FIN2GO Interview</button>
+        <button class="filter-tab" data-filter="collab" onclick="setFilter('collab')">Contabilidad Colaborativa</button>
+        <button class="filter-tab" data-filter="verifactu" onclick="setFilter('verifactu')">Verifactu</button>
+      </div>
+    </div>
+
+    <div class="quotes-grid" id="quotes-grid"></div>
+
+    <footer>
+      Built with care for <a href="https://holded.com" target="_blank">Holded</a> • Share your wisdom
+    </footer>
+  </div>
+
+  <!-- Add/Edit Quote Modal -->
+  <div class="modal-overlay" id="modal-add">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Add new quote</h2>
+        <button class="modal-close" onclick="closeModal('add')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Quote text *</label>
+          <textarea id="form-text" placeholder="Enter the quote..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Speaker *</label>
+          <input type="text" id="form-speaker" placeholder="Who said this?">
+        </div>
+        <div class="form-group">
+          <label>Role / Title</label>
+          <input type="text" id="form-role" placeholder="CEO, Author, etc.">
+        </div>
+        <div class="form-group">
+          <label>Source</label>
+          <input type="text" id="form-source" placeholder="Book, article, interview...">
+        </div>
+        <div class="form-group">
+          <label>Page / Timestamp</label>
+          <input type="text" id="form-page" placeholder="p. 42, 12:34, etc.">
+        </div>
+        <div class="form-group">
+          <label>Theme</label>
+          <input type="text" id="form-theme" placeholder="Leadership, Innovation, etc.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('add')">Cancel</button>
+        <button class="btn btn-primary" onclick="saveQuote()">Save quote</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Modal -->
+  <div class="modal-overlay" id="modal-upload">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Upload content</h2>
+        <button class="modal-close" onclick="closeModal('upload')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="18" x2="12" y2="12"/>
+            <line x1="9" y1="15" x2="15" y2="15"/>
+          </svg>
+          <h4>Drop files here or click to browse</h4>
+          <p>Supports PDF, SRT, VTT, and TXT files</p>
+          <input type="file" id="file-input" style="display:none" accept=".pdf,.srt,.vtt,.txt" multiple onchange="handleFileUpload(this)">
+        </div>
+        <div class="form-group">
+          <label>Or paste a video URL</label>
+          <input type="text" id="video-url-input" placeholder="https://youtube.com/watch?v=...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('upload')">Cancel</button>
+        <button class="btn btn-primary" onclick="processUpload()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Extract quotes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <span id="toast-message">Quote saved successfully!</span>
+  </div>
+
+  <script>
+    // Initial quotes data
+    let quotes = [
+      {
+        id: 1,
+        text: "Nosotros somos una asesoría colaborativa. Buscamos que tanto el trabajo del cliente valga para nosotros como que nuestro trabajo valga para el cliente.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:00:25",
+        theme: "Colaboración",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 2,
+        text: "Lo que conseguimos es que la contabilidad se convierta en información financiera para que el cliente tenga esa información en la nube y accesible y por lo tanto, a partir de ahí puede tomar decisiones.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:01:06",
+        theme: "Toma de decisiones",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 3,
+        text: "Hay clientes que necesitan una contabilidad más al día, donde no es impuesto centrista. Lo importante son las finanzas.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:01:46",
+        theme: "Enfoque financiero",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 4,
+        text: "Lo que encontramos con Holded es esa herramienta colaborativa donde el cliente y nosotros podíamos trabajar en un mismo entorno, donde nuestro trabajo además pasaba a ser transparente.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:02:52",
+        theme: "Transparencia",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 5,
+        text: "El cliente con una herramienta colaborativa es propietario de esa información financiera y a partir de ahí puede tomar las decisiones. En una herramienta no colaborativa, el cliente solamente tiene información cuando el asesor se lo da.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:07:05",
+        theme: "Propiedad de datos",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 6,
+        text: "No hay que confundir ser simplista con ser simple. Ser simple es mejorar la vida para todos y dar la mejor herramienta y ser lo más productivos posible.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:12:22",
+        theme: "Simplicidad",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 7,
+        text: "No somos una asesoría impuesto centrista. No trabajamos solo para presentar impuestos, trabajamos para que el empresario conozca los datos financieros de su empresa.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:13:22",
+        theme: "Valor añadido",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 8,
+        text: "Si los clientes nos enviaran las facturas de forma manual como se hacía antaño, no podríamos tener tantos clientes como tenemos ahora.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:15:14",
+        theme: "Escalabilidad",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 9,
+        text: "Holded cubre el 90% de las necesidades del 90% de las empresas.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:23:32",
+        theme: "Cobertura",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 10,
+        text: "Ser partner de Holded significa para el cliente seguridad de tener partners aliados. Para nosotros significa crecer junto a un partner estratégico que nos da garantía de éxito.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:24:43",
+        theme: "Partnership",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 11,
+        text: "Van a ir desapareciendo estas herramientas opacas hacia el cliente. Va a ser todo mucho más transparente y la propiedad de la información va a ganar peso.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:26:45",
+        theme: "Futuro",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 12,
+        text: "No hay nada más fácil que tenerlo todo integrado.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:33:46",
+        theme: "Integración",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 13,
+        text: "El futuro va a ser Holded. Ya no hay marcha atrás.",
+        speaker: "Fin2Go",
+        role: "Asesoría colaborativa",
+        source: "FIN2GO × Holded Interview",
+        page: "00:36:51",
+        theme: "Futuro",
+        sourceKey: "fin2go"
+      },
+      {
+        id: 14,
+        text: "Holded se ha convertido en una pieza clave en aquellas gestorías que desean dar el paso de la digitalización. Podemos tener, tanto la información de los clientes, la cartera, las oportunidades, la contabilidad y la información bancaria. El propio cliente colabora en la generación de información.",
+        speaker: "Manel Montero",
+        role: "CEO de MANPAT",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 8-9",
+        theme: "Digitalización",
+        sourceKey: "collab"
+      },
+      {
+        id: 15,
+        text: "Conseguimos tener la información actualizada, de una forma muy sencilla y sin estar perdiendo tiempo en la introducción de datos. Lo que nos permite asesorar, que es lo que más nos gusta.",
+        speaker: "Manel Montero",
+        role: "CEO de MANPAT",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 9",
+        theme: "Eficiencia",
+        sourceKey: "collab"
+      },
+      {
+        id: 16,
+        text: "El módulo de facturación de Holded lo hace todo. Cualquier empresa puede entender sus servicios o sus productos y estandarizarlos. Funciona increíblemente bien.",
+        speaker: "Josep Rovira",
+        role: "Fundador y CEO de Cratevo",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 11",
+        theme: "Facturación",
+        sourceKey: "collab"
+      },
+      {
+        id: 17,
+        text: "Este año hemos completado la presentación de impuestos con éxito de la mano de Holded. Realmente sentimos que trabajamos como un equipo.",
+        speaker: "Javier Piqueras",
+        role: "CEO de PQS Consulting",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 12-13",
+        theme: "Colaboración",
+        sourceKey: "collab"
+      },
+      {
+        id: 18,
+        text: "Con Holded, la conciliación bancaria no solo es rápida, es clave para la contabilidad colaborativa. Gracias a esta herramienta, el trabajo fluye mejor y nuestros clientes reciben un servicio impecable.",
+        speaker: "Gloria Casao",
+        role: "CEO y socia de The Table",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 14",
+        theme: "Conciliación bancaria",
+        sourceKey: "collab"
+      },
+      {
+        id: 19,
+        text: "Antes sólo mirábamos PyG, ahora creamos un proyecto para cada cliente y nuestro equipo registra las horas. Así podemos calcular el precio/hora por cliente y tener control sobre su rentabilidad, que buscamos que sea del 20%.",
+        speaker: "Javier Díaz",
+        role: "CEO y fundador de Exentys",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 16-17",
+        theme: "Rentabilidad",
+        sourceKey: "collab"
+      },
+      {
+        id: 20,
+        text: "La contabilidad colaborativa es una nueva forma de trabajar que rompe barreras y genera una relación de mayor transparencia y confianza entre asesores y clientes.",
+        speaker: "Holded",
+        role: "Documento oficial",
+        source: "Contabilidad Colaborativa 2024",
+        page: "p. 18",
+        theme: "Transformación",
+        sourceKey: "collab"
+      },
+      {
+        id: 21,
+        text: "En pleno siglo XXI, la digitalización ha dejado de ser una opción para convertirse en una necesidad absoluta.",
+        speaker: "Javier Hurtado",
+        role: "Representante de la AEAT e impulsor de Verifactu",
+        source: "Verifactu con Holded",
+        page: "p. 2-3",
+        theme: "Digitalización",
+        sourceKey: "verifactu"
+      },
+      {
+        id: 22,
+        text: "Tener acceso real a la información de facturación es clave para mejorar el cumplimiento fiscal y dar un mejor servicio a empresas y autónomos.",
+        speaker: "Javier Hurtado",
+        role: "Representante de la AEAT",
+        source: "Verifactu con Holded",
+        page: "p. 2-3",
+        theme: "Cumplimiento fiscal",
+        sourceKey: "verifactu"
+      },
+      {
+        id: 23,
+        text: "Si el software y las asesorías están asociados, todos sus clientes podrán estar tranquilos, ya que se habrá solucionado su problema.",
+        speaker: "Javier Hurtado",
+        role: "Representante de la AEAT",
+        source: "Verifactu con Holded",
+        page: "p. 18-19",
+        theme: "Partnerships",
+        sourceKey: "verifactu"
+      },
+      {
+        id: 24,
+        text: "El consejo es claro: cuanto antes, mejor. No lo dejes para el último momento. Sabemos que habrá dificultades, pero cuanto antes empieces a probar y adaptarte, más fácil será superarlas.",
+        speaker: "Javier Hurtado",
+        role: "Representante de la AEAT",
+        source: "Verifactu con Holded",
+        page: "p. 19",
+        theme: "Preparación",
+        sourceKey: "verifactu"
+      },
+      {
+        id: 25,
+        text: "Verifactu es una oportunidad para colaborar más con nuestros clientes y, gracias a la facilidad de Holded en esta fase voluntaria, las asesorías podrán llegar preparadas al 1 de enero.",
+        speaker: "Florencia D'Andrea",
+        role: "Directora del área fiscal y contable en Lidera tu negocio",
+        source: "Verifactu con Holded",
+        page: "p. 10-11",
+        theme: "Oportunidad",
+        sourceKey: "verifactu"
+      }
+    ];
+
+    let currentFilter = 'all';
+    let nextId = 26;
+
+    function getInitials(name) {
+      return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function renderQuotes(filteredQuotes) {
+      const grid = document.getElementById('quotes-grid');
+      
+      if (filteredQuotes.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <h3>No quotes found</h3>
+            <p>Try adjusting your search or filters</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filteredQuotes.map(q => `
+        <div class="quote-card" data-id="${q.id}">
+          <div class="quote-actions">
+            <button class="action-btn" onclick="copyQuote(${q.id})" title="Copy quote">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+            <button class="action-btn" onclick="deleteQuote(${q.id})" title="Delete quote">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              </svg>
+            </button>
+          </div>
+          <p class="quote-text">"${q.text}"</p>
+          <div class="quote-meta">
+            <div class="quote-avatar">${getInitials(q.speaker)}</div>
+            <div class="quote-author">
+              <div class="name">${q.speaker}</div>
+              <div class="role">${q.role}</div>
+            </div>
+          </div>
+          <div class="quote-tags">
+            <span class="tag tag-source">${q.source}</span>
+            ${q.page ? `<span class="tag tag-page">${q.page}</span>` : ''}
+            <span class="tag tag-theme">${q.theme}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterQuotes() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      let filtered = quotes;
+
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(q => q.sourceKey === currentFilter);
+      }
+
+      if (query) {
+        filtered = filtered.filter(q =>
+          q.text.toLowerCase().includes(query) ||
+          q.speaker.toLowerCase().includes(query) ||
+          q.theme.toLowerCase().includes(query) ||
+          q.role.toLowerCase().includes(query) ||
+          q.source.toLowerCase().includes(query)
+        );
+      }
+
+      renderQuotes(filtered);
+    }
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.filter === filter);
+      });
+      filterQuotes();
+    }
+
+    function updateStats() {
+      const sources = [...new Set(quotes.map(q => q.source))];
+      const speakers = [...new Set(quotes.map(q => q.speaker))];
+      const themes = [...new Set(quotes.map(q => q.theme))];
+
+      document.getElementById('stat-total').textContent = quotes.length;
+      document.getElementById('stat-sources').textContent = sources.length;
+      document.getElementById('stat-speakers').textContent = speakers.length;
+      document.getElementById('stat-themes').textContent = themes.length;
+    }
+
+    function openModal(type) {
+      document.getElementById(`modal-${type}`).classList.add('active');
+    }
+
+    function closeModal(type) {
+      document.getElementById(`modal-${type}`).classList.remove('active');
+      if (type === 'add') {
+        document.getElementById('form-text').value = '';
+        document.getElementById('form-speaker').value = '';
+        document.getElementById('form-role').value = '';
+        document.getElementById('form-source').value = '';
+        document.getElementById('form-page').value = '';
+        document.getElementById('form-theme').value = '';
+      }
+    }
+
+    function saveQuote() {
+      const text = document.getElementById('form-text').value.trim();
+      const speaker = document.getElementById('form-speaker').value.trim();
+      const role = document.getElementById('form-role').value.trim();
+      const source = document.getElementById('form-source').value.trim();
+      const page = document.getElementById('form-page').value.trim();
+      const theme = document.getElementById('form-theme').value.trim();
+
+      if (!text || !speaker) {
+        showToast('Please fill in quote text and speaker');
+        return;
+      }
+
+      quotes.unshift({
+        id: nextId++,
+        text,
+        speaker,
+        role: role || 'Unknown',
+        source: source || 'Manual entry',
+        page,
+        theme: theme || 'General',
+        sourceKey: 'custom'
+      });
+
+      closeModal('add');
+      filterQuotes();
+      updateStats();
+      updateFilterTabs();
+      showToast('Quote added successfully!');
+    }
+
+    function copyQuote(id) {
+      const quote = quotes.find(q => q.id === id);
+      if (quote) {
+        const text = `"${quote.text}" — ${quote.speaker}, ${quote.role}`;
+        navigator.clipboard.writeText(text);
+        showToast('Quote copied to clipboard!');
+      }
+    }
+
+    function deleteQuote(id) {
+      if (confirm('Are you sure you want to delete this quote?')) {
+        quotes = quotes.filter(q => q.id !== id);
+        filterQuotes();
+        updateStats();
+        updateFilterTabs();
+        showToast('Quote deleted');
+      }
+    }
+
+    function handleFileUpload(input) {
+      const files = input.files;
+      if (files.length > 0) {
+        showToast(`${files.length} file(s) ready for processing`);
+      }
+    }
+
+    function processUpload() {
+      const fileInput = document.getElementById('file-input');
+      const videoUrl = document.getElementById('video-url-input').value.trim();
+      
+      if (fileInput.files.length === 0 && !videoUrl) {
+        showToast('Please select files or enter a video URL');
+        return;
+      }
+
+      showToast('Processing... Claude will extract quotes from your content');
+      closeModal('upload');
+      
+      setTimeout(() => {
+        showToast('Upload your files in the chat for Claude to extract quotes');
+      }, 1500);
+    }
+
+    function updateFilterTabs() {
+      const sourceKeys = [...new Set(quotes.map(q => q.sourceKey))];
+      const tabsContainer = document.getElementById('filter-tabs');
+      
+      let tabsHTML = `<button class="filter-tab ${currentFilter === 'all' ? 'active' : ''}" data-filter="all" onclick="setFilter('all')">All quotes</button>`;
+      
+      if (sourceKeys.includes('fin2go')) {
+        tabsHTML += `<button class="filter-tab ${currentFilter === 'fin2go' ? 'active' : ''}" data-filter="fin2go" onclick="setFilter('fin2go')">FIN2GO Interview</button>`;
+      }
+      if (sourceKeys.includes('collab')) {
+        tabsHTML += `<button class="filter-tab ${currentFilter === 'collab' ? 'active' : ''}" data-filter="collab" onclick="setFilter('collab')">Contabilidad Colaborativa</button>`;
+      }
+      if (sourceKeys.includes('verifactu')) {
+        tabsHTML += `<button class="filter-tab ${currentFilter === 'verifactu' ? 'active' : ''}" data-filter="verifactu" onclick="setFilter('verifactu')">Verifactu</button>`;
+      }
+      if (sourceKeys.includes('custom')) {
+        tabsHTML += `<button class="filter-tab ${currentFilter === 'custom' ? 'active' : ''}" data-filter="custom" onclick="setFilter('custom')">My quotes</button>`;
+      }
+      
+      tabsContainer.innerHTML = tabsHTML;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Initialize
+    renderQuotes(quotes);
+    updateStats();
+  </script>
+</body>
+</html>
